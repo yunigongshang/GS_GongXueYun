@@ -97,7 +97,7 @@ li_hua.proxies = {
 "password": "li hua", \\ 密码
 "phone": "1111xxxx",   \\ 手机号
 "address": "山东省菏泽市曹县某某街道",
-"latitude": "34.830624",   \\ 纬度 获取坐标https://api.map.baidu.com/lbsapi/getpoint/index.html
+"latitude": "34.830624",   \\ 纬度 
 "longitude": "115.545005", \\ 经度
 "city": "菏泽市",
 "province": "山东省",
@@ -108,6 +108,8 @@ li_hua.proxies = {
 "submit_month_report_time": 1 \\ 每个月的几号提交月报,不要写28,29,30或31！！！
 "pushKey":"" \\Server酱推送token，https://sct.ftqq.com/sendkey
 ```
+
+经纬度查询 https://api.map.baidu.com/lbsapi/getpoint/index.html
 
 **说明:**  
 对日报和月报说明:月报文件里面只有3篇,日报只有20多篇,请自行补充.且都是采用**随机取的方式提交**.
