@@ -1,0 +1,141 @@
+import json
+import logging
+import os
+import time
+import requests
+
+from api.api_all import get_token_userid, get_plan, clock_in, get_attendance_log, submit_daily, get_weeks_date, submit_weekly, submit_log, submit_month_report
+from config.info import Info
+from textHandle.get_daily import Daily
+from textHandle.get_month_report import MonthReport
+from textHandle.get_weekly import Weekly
+from textHandle.handle_weeks_date import WeeksDate
+from textHandle.submitTime import SubmitTime
+from util.tomorrow import tomorrow_1_clock, next_week_submit_time, next_submit_month_time
+
+logging.basicConfig(format="[%(asctime)s] %(name)s %(levelname)s: %(message)s", level=logging.INFO,
+                    datefmt="%Y-%m-%d %I:%M:%S")
+main_module_log = logging.getLogger("main_module")
+
+path = os.path.dirname(__file__)
+patha=os.path.dirname(__file__)+"/user"
+
+def pushMessage(title, content, token):
+    url = 'http://www.pushplus.plus/send?token=' + token + '&title=' + title + '&content=' + content + '&template=html'
+    resp = requests.post(url)
+    if resp.json()["code"] == 200:
+        print('推送消息提醒成功！')
+    else:
+        print('推送消息提醒失败！')
+
+def load_daily_file() -> Daily:
+    with open(os.path.join(path, 'textFile/daily.json'), 'r', encoding="UTF-8") as f:
+        daily = json.load(f)
+    return Daily(daily)
+
+def load_weekly_file() -> Weekly:
+    with open(os.path.join(path, 'textFile/weekly.json'), 'r', encoding="UTf-8") as f:
+        weekly = json.load(f)
+    return Weekly(weekly)
+
+def load_month_report() -> MonthReport:
+    with open(os.path.join(path, 'textFile/month_report.json'), 'r', encoding="UTf-8") as f:
+        return MonthReport(json.load(f))
+
+def load_login_info(config_file) -> Info:
+    with open(os.path.join(patha, config_file), encoding="utf-8") as f:
+        user_info = json.load(f)
+    return Info(user_info, os.path.join(patha, config_file))
+
+
+def login(user_login_info: Info) -> None:
+    if not user_login_info.token:
+        get_token_userid(user_login_info)
+        user_login_info.to_save_local(user_login_info.__dict__)
+    else:
+        main_module_log.info("使用本地token")
+
+
+# get plan
+def plan_id(user_login_info: Info) -> None:
+    if not user_login_info.plan_id:
+        get_plan(user_login_info)
+    else:
+        main_module_log.info("使用本地plan id")
+
+
+def load_weeks_info(data) -> WeeksDate:
+    return WeeksDate(data)
+
+def run(i):
+    user_login_info = load_login_info(i)
+    login(user_login_info)
+    plan_id(user_login_info)
+    submit_all = submit_log(user_login_info)
+    type_chin=clock_in(user_login_info)
+    if user_login_info.is_repeat_clock_in:
+        get_attendance_log(user_login_info)
+    submit_time = SubmitTime(path)
+    if user_login_info.is_submit_daily:
+        if not submit_time.daily_next_submit_Time or int(time.time()) > submit_time.daily_next_submit_Time:
+            daily = load_daily_file()
+            subm=submit_daily(user_login_info, daily=daily, day=submit_all['dayReportNum'])
+            submit_d=f'日报提交内容为：{subm}'
+            submit_time.daily_next_submit_Time = tomorrow_1_clock()
+            submit_time.to_save_local()
+        else:
+            submit_d="今天已提交日报了,不会重复提交"
+            main_module_log.error("今天已提交日报了,不会重复提交")
+
+    now_week = int(time.strftime("%w", time.localtime()))
+    now_week = now_week if now_week != 0 else 7
+    if now_week == user_login_info.submit_weekly_time:
+        if user_login_info.is_submit_weekly:
+            if not submit_time.weekly_next_submit_Time or int(time.time()) > submit_time.weekly_next_submit_Time:
+                weeks_dict = get_weeks_date(user_login_info)
+                weeks_date = load_weeks_info(weeks_dict)
+                now_week = weeks_date.get_now_week_date()
+                weekly = load_weekly_file()
+                weeks = submit_all['weekReportNum']
+                now_week['weeks'] = weeks
+                submit_weekly(user_login_info, week=now_week, weekly=weekly.get_now_weekly(weeks))
+                submit_time.weekly_next_submit_Time = next_week_submit_time()
+                submit_time.to_save_local()
+                submit_w="周报提交成功"
+            else:
+                submit_w="本周已提交周报，不会重复提交"
+    else:
+        submit_w="未到提交周报时间，时间为星期一"
+    date = time.localtime()
+    day = date.tm_mday
+    
+    if day == user_login_info.submit_month_report_time:
+        if submit_time.month_next_submit_Report == "" or int(time.time()) > submit_time.month_next_submit_Report:
+            month_report = load_month_report()
+            submit_month_report(user_login_info, date=date, month_report=month_report.get_month_report())
+            submit_time.month_next_submit_Report = next_submit_month_time()
+            submit_time.to_save_local()
+            submit_m="月报提交成功"
+        else:
+            submit_m="本月已提交月报，不会重复提交"
+
+    else:
+        submit_m="未到提交月报时间,时间为15号"
+        
+     #构建推送消息
+    if user_login_info.pushKey!="":
+        pushMessage(user_login_info.phone,type_chin+"打卡成功！",
+                            "用户:"+user_login_info.phone+',工学云'+type_chin+"打卡成功！\n"+submit_d+"\n"+submit_w+"\n"+submit_m,
+                            user_login_info.pushKey)
+    else:
+        main_module_log.info("未配置推送")
+    
+if __name__ == '__main__':
+    main_module_log.info("开始")
+    last_directory1=os.path.dirname(os.path.realpath(__file__))+"/user"
+    f_list = os.listdir(last_directory1)
+    for i in f_list:
+        if i.endswith('.json'):
+            run(i)
+            main_module_log.info("----------签到完成---------")
+    main_module_log.info("运行结束")
