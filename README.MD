@@ -97,7 +97,7 @@ li_hua.proxies = {
 "password": "li hua", \\ 密码
 "phone": "1111xxxx",   \\ 手机号
 "address": "山东省菏泽市曹县某某街道",
-"latitude": "34.830624",   \\ 纬度
+"latitude": "34.830624",   \\ 纬度 获取坐标https://api.map.baidu.com/lbsapi/getpoint/index.html
 "longitude": "115.545005", \\ 经度
 "city": "菏泽市",
 "province": "山东省",
