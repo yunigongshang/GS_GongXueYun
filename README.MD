@@ -1,4 +1,7 @@
+本人小白能用就行不要在意我的屎山代码，哪些是我的？觉得很屎的就是我的
+
 ## 本项目是缝合项目
+
 缝合了这两个
 
 https://github.com/github123666/gonxueyun 
@@ -84,7 +87,8 @@ li_hua.proxies = {
 
 > 1.pip install -r requirements.txt
 
-> 2.配置 user_config.json 文件
+>2.配置 .json 文件,文件后缀改为.json,多用户就再创建一个
+
 
 ```angular2html
 "password": "li hua", \\ 密码
