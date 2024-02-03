@@ -12,5 +12,5 @@
     "is_submit_weekly": true,
     "submit_weekly_time": 1,
     "submit_month_report_time": 1,
-    
+    "pushKey":""
 }
