@@ -101,8 +101,3 @@ li_hua.proxies = {
 某讯和某里的云服务器大概率不行(deny了)     
 有条件上**树莓派**挂寝室里   
 没条件买**挂机宝**，**云手机**也可以
-
-## start
-
-
-[![Stargazers over time](https://starchart.cc/github123666/gonxueyun.svg)](https://starchart.cc/github123666/gonxueyun)
