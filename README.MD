@@ -65,6 +65,9 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 ## 部署
 
 1.华为云函数部署，部署是需更改代码
+
+2.设置俩个定时器，建议一个设置12点前一个设置12点后
+
 ![!\[alt text\](image.png)](img/image.png)
 
 ## 声明
