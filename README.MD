@@ -1,8 +1,23 @@
-##本项目是缝合项目
-  缝合了这两个
-  https://github.com/github123666/gonxueyun
-  https://github.com/XuanRanDev/Auto-GongXueYun-2
-  这个俩个项目不太完善有日报周报的无法部署在云函数，能部署的又没有周报日报，当然主要还是自己学艺不精
+## 本项目是缝合项目
+缝合了这两个
+https://github.com/github123666/gonxueyun 
+https://github.com/XuanRanDev/Auto-GongXueYun-2
+这个俩个项目不太完善有日报周报的无法部署在云函数，能部署的又没有周报日报，当然主要还是自己学艺不精
+
+
+> 邮箱：gongshang0130@qq.com
+>
+> 如果此项目侵犯您的合法权益，可通过邮件联系我下架此项目。
+>
+> 等项目，均采用GPL2.0开源协议开源，目的在于使更多人学习计算机网络和安全，根据GPL2.0协议，开发者不对软件的适用性或功能做出任何保证。
+>
+> 为了整个社区的良性发展，我们强烈建议学习人员做到以下几点：
+>
+>**我们不鼓励、不赞成、不支持任何人，使用任何违规方式完成实习和打卡任务。**
+>
+> 同时，鉴于项目的特殊性，开发者可能在任何时间**停止更新**或**删除项目**。
+
+
 ## 当前功能
 
 ## 有问题可以issues
@@ -43,10 +58,8 @@
 
 ## 部署
 
-1.google 云端硬盘可以部署 https://drive.google.com/drive/home  
-存在一定风险,应为是国外ip
-![img](./img/success.png)
-教程更新中....  
+1.华为云函数部署，部署是需更改代码
+![!\[alt text\](image.png)](img/image.png)
 
 ## 声明
 
@@ -76,8 +89,6 @@ li_hua.proxies = {
 "address": "山东省菏泽市曹县某某街道",
 "latitude": "34.830624",   \\ 纬度
 "longitude": "115.545005", \\ 经度
-"start_time": "08", \\ 打卡开始时间
-"end_time": "21",    \\ 打卡结束时间 注意是24小时时间
 "city": "菏泽市",
 "province": "山东省",
 "is_repeat_clock_in": false \\ 默认不补签

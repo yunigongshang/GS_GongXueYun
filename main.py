@@ -20,13 +20,17 @@ main_module_log = logging.getLogger("main_module")
 path = os.path.dirname(__file__)
 patha=os.path.dirname(__file__)+"/user"
 
-def pushMessage(title, content, token):
-    url = 'http://www.pushplus.plus/send?token=' + token + '&title=' + title + '&content=' + content + '&template=html'
-    resp = requests.post(url)
-    if resp.json()["code"] == 200:
-        print('推送消息提醒成功！')
-    else:
-        print('推送消息提醒失败！')
+def pushMessage(a,title, content, token):
+        server_push_url = "https://sctapi.ftqq.com/"+token+".send"
+        params = {
+            "text": title,
+            "desp": content
+        }
+        res = requests.post(url=server_push_url, data=params)
+        if res.status_code == 200:
+            print("Server酱推送成功!")
+        else:
+            print("Server酱推送失败!")
 
 def load_daily_file() -> Daily:
     with open(os.path.join(path, 'textFile/daily.json'), 'r', encoding="UTF-8") as f:

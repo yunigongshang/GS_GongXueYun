@@ -21,8 +21,6 @@ class Info:
         self.address = login_info["address"]
         self.latitude = login_info["latitude"]
         self.longitude = login_info['longitude']
-        self.start_time = login_info['start_time']
-        self.end_time = login_info["end_time"]
         self.token = login_info.get("token")
         self.user_id = login_info.get("user_id")
         self.plan_id = login_info.get("plan_id")
