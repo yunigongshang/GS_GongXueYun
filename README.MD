@@ -14,13 +14,6 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 >
 > 如果此项目侵犯您的合法权益，可通过邮件联系我下架此项目。
 >
-> 等项目，均采用GPL2.0开源协议开源，目的在于使更多人学习计算机网络和安全，根据GPL2.0协议，开发者不对软件的适用性或功能做出任何保证。
->
-> 为了整个社区的良性发展，我们强烈建议学习人员做到以下几点：
->
->**我们不鼓励、不赞成、不支持任何人，使用任何违规方式完成实习和打卡任务。**
->
-> 同时，鉴于项目的特殊性，开发者可能在任何时间**停止更新**或**删除项目**。
 
 
 ## 当前功能
@@ -58,38 +51,44 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 
 1. 打卡
 2. 补签(补前未30天打卡)
+
 </details>
 
+## 项目更改
 
-## 部署
+>增加了多用户
+>适配华为云部署，原来的项目直接部署到华为云有诸多问题,解决方法用了另一个项目代码代替
+>去除了一些程序运行日志，华为云运行日志只能显示2K，不方便我看日志
+>增加了Server酱推送，可自己更改,pushplus推送加在华为云ip被封
+>取消了原项目的打卡时间，运行了就打卡
 
-1.华为云函数部署，部署是需更改代码
+## 云函数部署自动打卡
+
+1.华为云函数部署，工学云ip在某腾和某里被封，建议使用华为云函数部署
 
 2.设置俩个定时器，建议一个设置12点前一个设置12点后
 
-![!\[alt text\](image.png)](img/image.png)
 
 ## 声明
 
 **仅供学习交流使用**，项目遵循MIT协议
 
-## 代理配置
-
-在api/api_all.py下配置
-
-```angular2html
-li_hua.proxies = {
-# 配置你的代理,建议验证代理是否可用
-# "http": "http://117.160.250.163:8828",
-# "https": "http://10.10.1.10:1080",
-}
-```
 
 ## 基本使用
 
-> 1.pip install -r requirements.txt
+>1.clone项目到本地
 
->2.配置 .json 文件,文件后缀改为.json,多用户就再创建一个
+```
+git clone https://github.com/yunigongshang/GongXueYun.git
+```
+
+>2.安装依赖
+
+```
+pip install -r requirements.txt
+```
+
+>3.在user文件夹下配置 .json 文件,文件后缀改为.json,多用户就再创建一个
 
 
 ```angular2html
@@ -104,28 +103,25 @@ li_hua.proxies = {
 "is_submit_daily": false, \\ 默认不提交日报
 "is_submit_weekly": false,\\ 默认不提交周报
 "submit_weekly_time": 1 ,\\ 星期几提交周报
-"submit_month_report_time": 1 \\ 每个月的几号提交月报,不要写28,29,30或31！！！
-"pushKey":"" \\Server酱推送token，https://sct.ftqq.com/sendkey
+"submit_month_report_time": 15 \\ 每个月的几号提交月报,不要写28,29,30或31！！！
+"pushKey":"" \\Server酱推送token，
 ```
 
+Server酱https://sct.ftqq.com/sendkey
 经纬度查询 https://api.map.baidu.com/lbsapi/getpoint/index.html
+
+>4.运行main.py
+```
+python main.py
+```
+
 
 **说明:**  
 对日报和月报说明:月报文件里面只有3篇,日报只有20多篇,请自行补充.且都是采用**随机取的方式提交**.
 
-最后**运行main.py**
 
 ## **补签说明**：
 
 1. 默认补签前30天的数据(只能补签到前30天的)
 2. 默认只补签上班(app默认只支持上班,保存和app统一原则),若学校有要求只需要修改请求的type改END,变成打下班卡
 3. 补签时间说明,默认是早上8或9点随机时间,随机秒打卡,若修改则自行修改
-
-### 自动打卡
-
-验证该环境能否打卡最简单的方法,看该环境能不能登录网页版   
-**某鱼上有几块一个月的移某云,可以用安卓模拟器的(不是打广告,我也不是卖云服务器的)**    
-买代理(有点贵)，免费的代理不太稳定(频繁切换ip好像会封号)     
-某讯和某里的云服务器大概率不行(deny了)     
-有条件上**树莓派**挂寝室里   
-没条件买**挂机宝**，**云手机**也可以

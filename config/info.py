@@ -41,7 +41,7 @@ class Info:
     def to_save_local(self, arg: dict):
         '''
         取消写入
-        华为云函数和百度云函数无权限写入，待解决
+        华为云函数和百度云函数无权限写入，待解决(学艺不精)
         '''
         print("取消写入")
         # with open(self.path, 'w', encoding="UTF_8") as f:
