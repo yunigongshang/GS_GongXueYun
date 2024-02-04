@@ -236,6 +236,9 @@ def handle_response(rsp: dict) -> None:
     response_code = rsp['code']
     if response_code == 401:
         raise SimpleError(f"token expire")
+    elif response_code <= 300:
+        # api_module_log.info(f"成功: {rsp}")
+        api_module_log.info(f"成功")
     else:
         api_module_log.info(f'请检测请求带的参数或发送issues 错误信息:{rsp}')
         api_module_log.info("其他错误,已退出")
