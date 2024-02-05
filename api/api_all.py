@@ -204,20 +204,42 @@ def submit_weekly(user_login_info, week, weekly):
     headers['sign'] = create_sign(user_login_info.user_id, "week", user_login_info.plan_id, '周报')
     rsp = requests.post(basic_url + url, headers=headers, data=json.dumps(data)).json()
     special_code(handle_response, rsp)
+    if rsp['msg'] == "此时间段已经写过周记":
+        return False
 
 @repeat_api
 def submit_daily(user_login_info, daily, day):
     url = 'practice/paper/v2/save'
     title = f"第{day}天日报"
+    daily_text=daily.get_daily()['data']
     headers['sign'] = create_sign(user_login_info.user_id, "day", user_login_info.plan_id, title)
     headers['authorization'] = user_login_info.token
     data = {"yearmonth": "", "address": "", "t": aes_encrypt(int(time.time() * 1000)), "title": title,
             "longitude": "0.0",
             "latitude": "0.0", "planId": user_login_info.plan_id, "reportType": "day",
-            "content": daily.get_daily()['data']}
+            "content": daily_text}
     rsp = requests.post(basic_url + url, headers=headers, data=json.dumps(data)).json()
+    if rsp['msg'] == "今天已经写过日报":
+        return False
     special_code(handle_response, rsp)
-    return daily.get_daily()['data']
+    return daily_text
+
+@repeat_api
+def submit_month_Inquire(user_login_info):
+    url = 'practice/paper/v2/listByStu'
+    headers['sign'] = create_sign(user_login_info.user_id,"student","month")
+    headers['authorization'] = user_login_info.token
+    data={
+        "currPage": 1,
+        "pageSize": 25,
+        "planId": user_login_info.plan_id,
+        "reportType": "month",
+        "t": aes_encrypt(int(time.time() * 1000))
+    }
+    rsp = requests.post(basic_url + url, headers=headers, data=json.dumps(data)).json()
+    mou=rsp["data"][0]["applyTime"]
+    return mou[mou.find('-') + 1:mou.find('-') + 2]
+    
 
 @repeat_api
 def submit_month_report(user_login_info, date, month_report):

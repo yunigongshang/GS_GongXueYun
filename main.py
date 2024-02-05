@@ -3,15 +3,14 @@ import logging
 import os
 import time
 import requests
+import datetime
 
-from api.api_all import get_token_userid, get_plan, clock_in, get_attendance_log, submit_daily, get_weeks_date, submit_weekly, submit_log, submit_month_report
+from api.api_all import get_token_userid, get_plan, clock_in, get_attendance_log, submit_daily, get_weeks_date, submit_month_Inquire, submit_weekly, submit_log, submit_month_report
 from config.info import Info
 from textHandle.get_daily import Daily
 from textHandle.get_month_report import MonthReport
 from textHandle.get_weekly import Weekly
 from textHandle.handle_weeks_date import WeeksDate
-from textHandle.submitTime import SubmitTime
-from util.tomorrow import tomorrow_1_clock, next_week_submit_time, next_submit_month_time
 
 logging.basicConfig(format="[%(asctime)s] %(name)s %(levelname)s: %(message)s", level=logging.INFO,
                     datefmt="%Y-%m-%d %I:%M:%S")
@@ -77,54 +76,51 @@ def run(i):
     plan_id(user_login_info)
     submit_all = submit_log(user_login_info)
     type_chin=clock_in(user_login_info)
+    
     if user_login_info.is_repeat_clock_in:
         get_attendance_log(user_login_info)
-    submit_time = SubmitTime(path)
-    if user_login_info.is_submit_daily:
-        if not submit_time.daily_next_submit_Time or int(time.time()) > submit_time.daily_next_submit_Time:
-            daily = load_daily_file()
-            subm=submit_daily(user_login_info, daily=daily, day=submit_all['dayReportNum'])
-            submit_d=f'日报提交内容为：{subm}'
-            submit_time.daily_next_submit_Time = tomorrow_1_clock()
-            submit_time.to_save_local()
-        else:
-            submit_d="今天已提交日报了,不会重复提交"
-            main_module_log.error("今天已提交日报了,不会重复提交")
+    daily = load_daily_file()
+    subm=submit_daily(user_login_info, daily=daily, day=submit_all['dayReportNum'])
+    if subm:
+        submit_d=f'日报提交内容为：{subm}'
 
-    now_week = int(time.strftime("%w", time.localtime()))
-    now_week = now_week if now_week != 0 else 7
-    if now_week == user_login_info.submit_weekly_time:
-        if user_login_info.is_submit_weekly:
-            if not submit_time.weekly_next_submit_Time or int(time.time()) > submit_time.weekly_next_submit_Time:
-                weeks_dict = get_weeks_date(user_login_info)
-                weeks_date = load_weeks_info(weeks_dict)
-                now_week = weeks_date.get_now_week_date()
-                weekly = load_weekly_file()
-                weeks = submit_all['weekReportNum']
-                now_week['weeks'] = weeks
-                submit_weekly(user_login_info, week=now_week, weekly=weekly.get_now_weekly(weeks))
-                submit_time.weekly_next_submit_Time = next_week_submit_time()
-                submit_time.to_save_local()
-                submit_w="周报提交成功"
-            else:
-                submit_w="本周已提交周报，不会重复提交"
     else:
-        submit_w="未到提交周报时间，时间为星期一"
-    date = time.localtime()
-    day = date.tm_mday
+        submit_d="今天已提交日报了,不会重复提交"
+        main_module_log.error("今天已提交日报了,不会重复提交")
+        
+    if user_login_info.is_submit_weekly:
+        now_week = int(time.strftime("%w", time.localtime()))
+        now_week = now_week if now_week != 0 else 7
+        if now_week == user_login_info.submit_weekly_time:
+            weeks_dict = get_weeks_date(user_login_info)
+            weeks_date = load_weeks_info(weeks_dict)
+            now_week = weeks_date.get_now_week_date()
+            weekly = load_weekly_file()
+            weeks = submit_all['weekReportNum']
+            now_week['weeks'] = weeks
+            weekly_text=weekly.get_now_weekly(weeks)
+            wekkly_tpye=submit_weekly(user_login_info, week=now_week, weekly=weekly_text)
+            if wekkly_tpye :
+                submit_w="周报提交内容为：{weekly_text}"
+            else:
+                submit_w="今天已提交周报"
+                main_module_log.error("今天已提交周报了,不会重复提交")
+        else:
+            submit_w="未到提交周报时间，时间为星期一"
+            
+    Recent_month=submit_month_Inquire(user_login_info)
+    if Recent_month==datetime.date.today():
+        date = time.localtime()
+        day = date.tm_mday
     
-    if day == user_login_info.submit_month_report_time:
-        if submit_time.month_next_submit_Report == "" or int(time.time()) > submit_time.month_next_submit_Report:
+        if day == user_login_info.submit_month_report_time:
             month_report = load_month_report()
             submit_month_report(user_login_info, date=date, month_report=month_report.get_month_report())
-            submit_time.month_next_submit_Report = next_submit_month_time()
-            submit_time.to_save_local()
             submit_m="月报提交成功"
         else:
-            submit_m="本月已提交月报，不会重复提交"
-
+            submit_m="未到提交月报时间,时间为15号"
     else:
-        submit_m="未到提交月报时间,时间为15号"
+        submit_m="本月已提交月报"
         
      #构建推送消息
     if user_login_info.pushKey!="":

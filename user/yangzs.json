@@ -1,0 +1,18 @@
+{
+    "password": "20030928Yzs",
+    "phone": "13970462758",
+    "address": "江西省赣州市蓉江新区文峰路9号",
+    "latitude": "25.803663",
+    "longitude": "114.899289",
+    "start_time": "09",
+    "end_time": "21",
+    "city": "赣州市",
+    "province": "江西省",
+    "path": "C:\\Users\\33001\\Desktop\\gonxueyun-2.0\\\u6768\u7956\u5723.json",
+    "is_repeat_clock_in": false,
+    "is_submit_daily": true,
+    "is_submit_weekly": true,
+    "submit_weekly_time": 1,
+    "submit_month_report_time": 15,
+    "pushKey": ""
+}
