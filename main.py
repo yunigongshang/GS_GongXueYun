@@ -106,7 +106,7 @@ def run(i):
                 submit_w="今天已提交周报"
                 main_module_log.error("今天已提交周报了,不会重复提交")
         else:
-            submit_w="未到提交周报时间，时间为星期一"
+            submit_w="未到提交周报时间，时间为星期{user_login_info.submit_weekly_time}"
             
     Recent_month=submit_month_Inquire(user_login_info)
     if Recent_month==datetime.date.today():
@@ -118,7 +118,7 @@ def run(i):
             submit_month_report(user_login_info, date=date, month_report=month_report.get_month_report())
             submit_m="月报提交成功"
         else:
-            submit_m="未到提交月报时间,时间为15号"
+            submit_m=f'未到提交月报时间,时间为{user_login_info.submit_month_report_time}号'
     else:
         submit_m="本月已提交月报"
         
