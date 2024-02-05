@@ -238,7 +238,9 @@ def submit_month_Inquire(user_login_info):
     }
     rsp = requests.post(basic_url + url, headers=headers, data=json.dumps(data)).json()
     mou=rsp["data"][0]["applyTime"]
-    return mou[mou.find('-') + 1:mou.find('-') + 2]
+    if mou in "-" or mou!=None:
+        mou_dat=mou[mou.find('-') + 1:mou.find('-') + 2]
+    return mou_dat
     
 
 @repeat_api

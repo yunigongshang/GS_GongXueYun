@@ -1,0 +1,16 @@
+{
+    "password": "Lc2870454770.",
+    "phone": "17879634489",
+    "address": "\u6c5f\u897f\u7701\u5409\u5b89\u5e02\u6c38\u4e30\u53bf\u4e03\u90fd\u4e61",
+    "latitude": "27.267511",
+    "longitude": "115.512506",
+    "city": "\u5409\u5b89\u5e02",
+    "province": "\u6c5f\u897f\u7701",
+    "path": "",
+    "is_repeat_clock_in": false,
+    "is_submit_daily": true,
+    "is_submit_weekly": true,
+    "submit_weekly_time": 1,
+    "submit_month_report_time": 15,
+    "pushKey": "SCT213916Tms4tWs53yw2bdz8oH3kzchyW"
+}

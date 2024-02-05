@@ -1,0 +1,16 @@
+{
+    "password": "Lh20031011",
+    "phone": "17879826009",
+    "address": "江西省九江市永修县凌云超市(艾城街店)",
+    "latitude": "29.090634",
+    "longitude": "115.775896",
+    "city": "九江市",
+    "province": "江西省",
+    "path": "",
+    "is_repeat_clock_in": false,
+    "is_submit_daily": true,
+    "is_submit_weekly": true,
+    "submit_weekly_time": 1,
+    "submit_month_report_time": 15,
+    "pushKey": ""
+}

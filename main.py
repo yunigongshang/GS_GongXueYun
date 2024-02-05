@@ -125,7 +125,7 @@ def run(i):
      #构建推送消息
     if user_login_info.pushKey!="":
         pushMessage(user_login_info.phone,type_chin+"打卡成功！",
-                            "用户:"+user_login_info.phone+',工学云'+type_chin+"打卡成功！\n"+submit_d+"\n"+submit_w+"\n"+submit_m,
+                            "用户:"+user_login_info.phone+',工学云'+type_chin+"打卡成功！\n\n"+submit_d+"\n\n"+submit_w+"\n\n"+submit_m,
                             user_login_info.pushKey)
     else:
         main_module_log.info("未配置推送")
@@ -139,3 +139,4 @@ if __name__ == '__main__':
             run(i)
             main_module_log.info("----------签到完成---------")
     main_module_log.info("运行结束")
+  
