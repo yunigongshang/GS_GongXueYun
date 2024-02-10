@@ -101,12 +101,12 @@ def run(i):
             weekly_text=weekly.get_now_weekly(weeks)
             wekkly_tpye=submit_weekly(user_login_info, week=now_week, weekly=weekly_text)
             if wekkly_tpye :
-                submit_w="周报提交内容为：{weekly_text}"
+                submit_w=f'周报提交内容为：{weekly_text}'
             else:
                 submit_w="今天已提交周报"
                 main_module_log.error("今天已提交周报了,不会重复提交")
         else:
-            submit_w="未到提交周报时间，时间为星期{user_login_info.submit_weekly_time}"
+            submit_w=f'未到提交周报时间，时间为星期{user_login_info.submit_weekly_time}'
             
     Recent_month=submit_month_Inquire(user_login_info)
     if Recent_month==datetime.date.today():
