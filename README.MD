@@ -17,6 +17,8 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 ## 当前功能
 
 ## 有问题可以issues
+
+
 **2024-01-011**   
 新版gxy用的flutter写的，逆向起来有点麻烦。当前版本还能用懒得捣鼓了
 

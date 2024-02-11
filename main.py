@@ -129,8 +129,8 @@ def run(i):
                             user_login_info.pushKey)
     else:
         main_module_log.info("未配置推送")
-    
-if __name__ == '__main__':
+        
+def main(self,name):
     main_module_log.info("开始")
     last_directory1=os.path.dirname(os.path.realpath(__file__))+"/user"
     f_list = os.listdir(last_directory1)
@@ -139,4 +139,7 @@ if __name__ == '__main__':
             run(i)
             main_module_log.info("----------签到完成---------")
     main_module_log.info("运行结束")
+    
+if __name__ == '__main__':
+    main("a","b")
   
