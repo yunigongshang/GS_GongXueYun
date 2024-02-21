@@ -48,7 +48,7 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 >1.clone项目到本地
 
 ```
-git clone https://github.com/yunigongshang/GongXueYun.git
+git clone https://github.com/yunigongshang/GS_GongXueYun.git
 ```
 
 >2.安装依赖
