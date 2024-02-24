@@ -70,7 +70,8 @@ def plan_id(user_login_info: Info) -> None:
 def load_weeks_info(data) -> WeeksDate:
     return WeeksDate(data)
 
-def run(user_login_info):
+def run(i):
+    user_login_info = load_login_info(i)
     login(user_login_info)
     plan_id(user_login_info)
     submit_all = submit_log(user_login_info)
@@ -135,12 +136,8 @@ def main(self,name):
     f_list = os.listdir(last_directory1)
     for i in f_list:
         if i.endswith('.json'):
-            try:
-                user_login_info = load_login_info(i)
-                run(user_login_info)
-                main_module_log.info("----------签到完成---------")
-            except Exception as e:
-                pushMessage(user_login_info.phone,"打卡失败！",f"用户:{user_login_info.phone},工学云打卡失败！\n\n{e}",user_login_info.pushKey)
+            run(i)
+            main_module_log.info("----------签到完成---------")
     main_module_log.info("运行结束")
     
 if __name__ == '__main__':
