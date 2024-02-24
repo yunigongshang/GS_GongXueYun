@@ -37,6 +37,10 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 
 2.设置俩个定时器，建议一个设置12点前一个设置12点后
 
+### 若不会使用可以+V 
+```
+changzai1209080115
+```
 
 ## 声明
 
