@@ -61,13 +61,13 @@ pip install -r requirements.txt
 
 
 ```angular2html
-"password": "密码", \\ 密码
 "phone": "手机号",   \\ 手机号
+"password": "密码", \\ 密码
 "address": "山东省菏泽市曹县某某街道",
 "latitude": "34.830624",   \\ 纬度 
 "longitude": "115.545005", \\ 经度
-"city": "菏泽市",
 "province": "山东省",
+"city": "菏泽市",
 "is_repeat_clock_in": false \\ 默认不补签
 "is_submit_daily": false, \\ 默认不提交日报
 "is_submit_weekly": false,\\ 默认不提交周报
