@@ -1,6 +1,6 @@
 {
-    "password": "密码",
     "phone": "手机号", 
+    "password": "密码",
     "address": "山东省菏泽市曹县某某街道",
     "latitude": "纬度", 
     "longitude": "经度",
