@@ -5,7 +5,7 @@ https://github.com/github123666/gonxueyun
 
 https://github.com/XuanRanDev/Auto-GongXueYun-2
 
-＃# --------------------------
+--------------------------
 > 邮箱：gongshang0130@qq.com
 >
 > 如果此项目侵犯您的合法权益，可通过邮件联系我下架此项目。
