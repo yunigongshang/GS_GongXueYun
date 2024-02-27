@@ -5,9 +5,7 @@ https://github.com/github123666/gonxueyun
 
 https://github.com/XuanRanDev/Auto-GongXueYun-2
 
-这个俩个项目不太完善有日报周报的无法部署在云函数，能部署的又没有周报日报
-
-
+---
 > 邮箱：gongshang0130@qq.com
 >
 > 如果此项目侵犯您的合法权益，可通过邮件联系我下架此项目。
@@ -37,6 +35,12 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 
 2.设置俩个定时器，建议一个设置12点前一个设置12点后
 
+云函数使用教程https://note.youdao.com/s/UHDGuOwj
+
+### 不想自己部署可以+V 
+```
+lc287045
+```
 
 ## 声明
 
