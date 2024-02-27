@@ -78,14 +78,16 @@ def run(user_login_info):
     
     if user_login_info.is_repeat_clock_in:
         get_attendance_log(user_login_info)
-    daily = load_daily_file()
-    subm=submit_daily(user_login_info, daily=daily, day=submit_all['dayReportNum'])
-    if subm:
-        submit_d=f'日报提交内容为：{subm}'
+        daily = load_daily_file()
+        subm=submit_daily(user_login_info, daily=daily, day=submit_all['dayReportNum'])
+        if subm:
+            submit_d=f'日报提交内容为：{subm}'
 
+        else:
+            submit_d="今天已提交日报了,不会重复提交"
+            main_module_log.error("今天已提交日报了,不会重复提交")
     else:
-        submit_d="今天已提交日报了,不会重复提交"
-        main_module_log.error("今天已提交日报了,不会重复提交")
+        submit_d="未设置日报提交"
         
     if user_login_info.is_submit_weekly:
         now_week = int(time.strftime("%w", time.localtime()))
@@ -106,20 +108,25 @@ def run(user_login_info):
                 main_module_log.error("今天已提交周报了,不会重复提交")
         else:
             submit_w=f'未到提交周报时间，时间为星期{user_login_info.submit_weekly_time}'
-            
-    Recent_month=submit_month_Inquire(user_login_info)
-    if Recent_month!=datetime.now().month:
-        date = time.localtime()
-        day = date.tm_mday
-    
-        if day == user_login_info.submit_month_report_time:
-            month_report = load_month_report()
-            submit_month_report(user_login_info, date=date, month_report=month_report.get_month_report())
-            submit_m="月报提交成功"
-        else:
-            submit_m=f'未到提交月报时间,时间为{user_login_info.submit_month_report_time}号'
     else:
-        submit_m="本月已提交月报"
+        submit_w="未设置周报提交"
+            
+    if user_login_info.is_submit_month_report:        
+        Recent_month=submit_month_Inquire(user_login_info)
+        if Recent_month!=datetime.now().month:
+            date = time.localtime()
+            day = date.tm_mday
+        
+            if day == user_login_info.submit_month_report_time:
+                month_report = load_month_report()
+                submit_month_report(user_login_info, date=date, month_report=month_report.get_month_report())
+                submit_m="月报提交成功"
+            else:
+                submit_m=f'未到提交月报时间,时间为{user_login_info.submit_month_report_time}号'
+        else:
+            submit_m="本月已提交月报"
+    else:
+        submit_d="未设置月报提交"
         
      #构建推送消息
     if user_login_info.pushKey!="":
