@@ -237,11 +237,13 @@ def submit_month_Inquire(user_login_info):
         "t": aes_encrypt(int(time.time() * 1000))
     }
     rsp = requests.post(basic_url + url, headers=headers, data=json.dumps(data)).json()
-    mou=rsp["data"][0]["yearmonth"]
-    if mou in "-" or mou!=None:
-        mou_dat=mou[mou.find('-') + 1:mou.find('-') + 2]
-    return mou_dat
-    
+    if rsp["flag"]!=0:
+        mou=rsp["data"][0]["yearmonth"]
+        if mou in "-" or mou!=None:
+            mou_dat=mou[mou.find('-') + 1:mou.find('-') + 2]
+        return mou_dat
+    else:
+        return False
 
 @repeat_api
 def submit_month_report(user_login_info, date, month_report):

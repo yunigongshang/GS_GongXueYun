@@ -3,7 +3,7 @@ import logging
 import os
 import time
 import requests
-import datetime
+from datetime import datetime
 
 from api.api_all import get_token_userid, get_plan, clock_in, get_attendance_log, submit_daily, get_weeks_date, submit_month_Inquire, submit_weekly, submit_log, submit_month_report
 from config.info import Info
@@ -108,7 +108,7 @@ def run(user_login_info):
             submit_w=f'未到提交周报时间，时间为星期{user_login_info.submit_weekly_time}'
             
     Recent_month=submit_month_Inquire(user_login_info)
-    if Recent_month==datetime.date.today():
+    if Recent_month!=datetime.now().month:
         date = time.localtime()
         day = date.tm_mday
     
