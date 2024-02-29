@@ -78,6 +78,8 @@ def run(user_login_info):
     
     if user_login_info.is_repeat_clock_in:
         get_attendance_log(user_login_info)
+        
+    if user_login_info.is_submit_daily:
         daily = load_daily_file()
         subm=submit_daily(user_login_info, daily=daily, day=submit_all['dayReportNum'])
         if subm:
