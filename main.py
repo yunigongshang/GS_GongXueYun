@@ -19,7 +19,11 @@ main_module_log = logging.getLogger("main_module")
 path = os.path.dirname(__file__)
 patha=os.path.dirname(__file__)+"/user"
 
-def pushMessage(a,title, content, token):
+#消息推送，目前推送较少先这样写
+def pushMessage(type,title, content, token):
+    
+    #server推送
+    if type == "server":
         server_push_url = "https://sctapi.ftqq.com/"+token+".send"
         params = {
             "text": title,
@@ -30,7 +34,21 @@ def pushMessage(a,title, content, token):
             print("Server酱推送成功!")
         else:
             print("Server酱推送失败!")
-
+            
+    #pushplus
+    if type == "pushplus":
+        pushplup_url='http://www.pushplus.plus/send'
+        data={
+            "token":token,
+            'title':title,
+            'content':content
+            }
+        res=requests.post(url=pushplup_url,data=data)
+        if res.status_code == 200:
+            print("pushplup推送成功!")
+        else:
+            print("pushplup推送失败!")
+            
 def load_daily_file() -> Daily:
     with open(os.path.join(path, 'textFile/daily.json'), 'r', encoding="UTF-8") as f:
         daily = json.load(f)
@@ -131,8 +149,8 @@ def run(user_login_info):
         submit_d="未设置月报提交"
         
      #构建推送消息
-    if user_login_info.pushKey!="":
-        pushMessage(user_login_info.phone,type_chin+"打卡成功！",
+    if user_login_info.pushKey!="" or user_login_info.type!="":
+        pushMessage(user_login_info.type,user_login_info.phone+type_chin+"打卡成功！",
                             "用户:"+user_login_info.phone+',工学云'+type_chin+"打卡成功！\n\n"+submit_d+"\n\n"+submit_w+"\n\n"+submit_m,
                             user_login_info.pushKey)
     else:
@@ -150,8 +168,8 @@ def main(self,name):
                 main_module_log.info("----------签到完成---------")
             except Exception as e:
                 main_module_log.info(e)
-                if user_login_info.pushKey!="":
-                    pushMessage(user_login_info.phone,"打卡失败！",
+                if user_login_info.pushKey!="" or user_login_info.type!="":
+                    pushMessage(user_login_info.type,user_login_info.phone+"打卡失败！",
                                 f"用户:{user_login_info.phone},工学云打卡失败！\n\n{e}",
                                 user_login_info.pushKey)
     main_module_log.info("运行结束")

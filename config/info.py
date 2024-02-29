@@ -33,6 +33,7 @@ class Info:
         self.is_submit_month_report = login_info['is_submit_month_report']
         self.submit_weekly_time = login_info['submit_weekly_time']
         self.submit_month_report_time = login_info['submit_month_report_time']
+        self.type=login_info['type']
         self.pushKey=login_info['pushKey']
 
     def __str__(self):
