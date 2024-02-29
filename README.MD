@@ -85,7 +85,8 @@ pip install -r requirements.txt
 "pushKey":"" \\推送token，
 ```
 
-Server酱https://sct.ftqq.com/sendkey
+Server酱：https://sct.ftqq.com/sendkey
+pushplus：微信搜索pushplus回复token
 
 经纬度查询 https://api.map.baidu.com/lbsapi/getpoint/index.html
 
