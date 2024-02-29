@@ -64,6 +64,9 @@ pip install -r requirements.txt
 >3.在user文件夹下配置 .json 文件,文件后缀改为.json,多用户就再创建一个
 
 
+### 目前项目在频繁更新建议备份一份配置文件方便重新拉库
+
+
 ```angular2html
 "phone": "手机号",   \\ 手机号
 "password": "密码", \\ 密码
@@ -78,7 +81,8 @@ pip install -r requirements.txt
 "is_submit_month_report": false,\\ 默认不提交月报
 "submit_weekly_time": 1 ,\\ 星期几提交周报
 "submit_month_report_time": 15 \\ 每个月的几号提交月报,不要写28,29,30或31！！！
-"pushKey":"" \\Server酱推送token，
+"type":"server", \\目前只有server酱推送和pushplus推送，[server,pushplus]
+"pushKey":"" \\推送token，
 ```
 
 Server酱https://sct.ftqq.com/sendkey
