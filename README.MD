@@ -23,7 +23,7 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 >
 >去除了一些程序运行日志，华为云运行日志只能显示2K，不方便我看日志
 >
->增加了Server酱推送，可自己更改,pushplus推送加在华为云ip被封
+>增加了Server酱推送
 >
 >取消了原项目的打卡时间，运行了就打卡
 
