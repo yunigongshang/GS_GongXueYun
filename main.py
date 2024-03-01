@@ -149,7 +149,7 @@ def run(user_login_info):
         submit_d="未设置月报提交"
         
      #构建推送消息
-    if user_login_info.pushKey!="" or user_login_info.type!="":
+    if user_login_info.pushKey!="" and user_login_info.type!="":
         pushMessage(user_login_info.type,user_login_info.phone+type_chin+"打卡成功！",
                             "用户:"+user_login_info.phone+',工学云'+type_chin+"打卡成功！\n\n"+submit_d+"\n\n"+submit_w+"\n\n"+submit_m,
                             user_login_info.pushKey)
@@ -168,7 +168,7 @@ def main(self,name):
                 main_module_log.info("----------签到完成---------")
             except Exception as e:
                 main_module_log.info(e)
-                if user_login_info.pushKey!="" or user_login_info.type!="":
+                if user_login_info.pushKey!="" and user_login_info.type!="":
                     pushMessage(user_login_info.type,user_login_info.phone+"打卡失败！",
                                 f"用户:{user_login_info.phone},工学云打卡失败！\n\n{e}",
                                 user_login_info.pushKey)
