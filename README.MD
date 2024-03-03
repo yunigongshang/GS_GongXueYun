@@ -27,7 +27,9 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 >
 >去除原先项目的补卡功能，因为我的工学云不能补卡
 >
->增加了Server酱推送，可自己更改,pushplus推送加在华为云ip被封
+>去除了一些我用不上的功能，主要还是写给自己用的
+>
+>增加了Server酱推送
 >
 >取消了原项目的打卡时间，运行了就打卡
 
@@ -88,7 +90,8 @@ pip install -r requirements.txt
 "pushKey":"" \\推送token，
 ```
 
-Server酱https://sct.ftqq.com/sendkey
+Server酱：https://sct.ftqq.com/sendkey
+pushplus：微信搜索pushplus回复token
 
 经纬度查询 https://api.map.baidu.com/lbsapi/getpoint/index.html
 
