@@ -23,6 +23,10 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 >
 >去除了一些程序运行日志，华为云运行日志只能显示2K，不方便我看日志
 >
+>去除了一些我用不上的功能，主要还是写给自己用的
+>
+>去除原先项目的补卡功能，因为我的工学云不能补卡
+>
 >增加了Server酱推送，可自己更改,pushplus推送加在华为云ip被封
 >
 >取消了原项目的打卡时间，运行了就打卡
@@ -75,7 +79,6 @@ pip install -r requirements.txt
 "longitude": "115.545005", \\ 经度
 "province": "山东省",
 "city": "菏泽市",
-"is_repeat_clock_in": false \\ 默认不补签
 "is_submit_daily": false, \\ 默认不提交日报
 "is_submit_weekly": false,\\ 默认不提交周报
 "is_submit_month_report": false,\\ 默认不提交月报
@@ -97,10 +100,3 @@ python main.py
 
 **说明:**  
 对日报和月报说明:月报文件里面只有3篇,日报只有20多篇,请自行补充.且都是采用**随机取的方式提交**.
-
-
-## **补签说明**：
-
-1. 默认补签前30天的数据(只能补签到前30天的)
-2. 默认只补签上班(app默认只支持上班,保存和app统一原则),若学校有要求只需要修改请求的type改END,变成打下班卡
-3. 补签时间说明,默认是早上8或9点随机时间,随机秒打卡,若修改则自行修改

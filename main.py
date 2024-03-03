@@ -94,8 +94,6 @@ def run(user_login_info):
     submit_all = submit_log(user_login_info)
     type_chin=clock_in(user_login_info)
     
-    if user_login_info.is_repeat_clock_in:
-        get_attendance_log(user_login_info)
         
     if user_login_info.is_submit_daily:
         daily = load_daily_file()
@@ -149,7 +147,7 @@ def run(user_login_info):
         submit_d="未设置月报提交"
         
      #构建推送消息
-    if user_login_info.pushKey!="" or user_login_info.type!="":
+    if user_login_info.pushKey!="" and user_login_info.type!="":
         pushMessage(user_login_info.type,user_login_info.phone+type_chin+"打卡成功！",
                             "用户:"+user_login_info.phone+',工学云'+type_chin+"打卡成功！\n\n"+submit_d+"\n\n"+submit_w+"\n\n"+submit_m,
                             user_login_info.pushKey)
@@ -164,14 +162,13 @@ def main(self,name):
         if i.endswith('.json'):
             try:
                 user_login_info = load_login_info(i)
+                main_module_log.info(f'用户{user_login_info.phone}开始签到')
                 run(user_login_info)
                 main_module_log.info("----------签到完成---------")
             except Exception as e:
                 main_module_log.info(e)
-                if user_login_info.pushKey!="" or user_login_info.type!="":
-                    pushMessage(user_login_info.type,user_login_info.phone+"打卡失败！",
-                                f"用户:{user_login_info.phone},工学云打卡失败！\n\n{e}",
-                                user_login_info.pushKey)
+                if user_login_info.pushKey!="" and user_login_info.type!="":
+                    pushMessage(user_login_info.type,"打卡失败！",f"工学云打卡失败！\n\n{e}",user_login_info.pushKey)
     main_module_log.info("运行结束")
     
 if __name__ == '__main__':

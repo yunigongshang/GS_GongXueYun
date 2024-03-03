@@ -27,7 +27,6 @@ class Info:
         self.city = login_info['city']
         self.province = login_info['province']
         self.path = path
-        self.is_repeat_clock_in = login_info['is_repeat_clock_in']
         self.is_submit_daily = login_info['is_submit_daily']
         self.is_submit_weekly = login_info['is_submit_weekly']
         self.is_submit_month_report = login_info['is_submit_month_report']
