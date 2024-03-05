@@ -43,7 +43,7 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 
 ### 不想自己部署可以+V 
 ```
-lc287045
+changzai1209080115
 ```
 
 ## 声明
