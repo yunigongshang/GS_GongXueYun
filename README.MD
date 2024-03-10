@@ -27,8 +27,6 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 >
 >去除原先项目的补卡功能，因为我的工学云不能补卡
 >
->去除了一些我用不上的功能，主要还是写给自己用的
->
 >增加了Server酱推送
 >
 >取消了原项目的打卡时间，运行了就打卡
@@ -45,7 +43,7 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 
 ### 不想自己部署可以+V 
 ```
-lc287045
+changzai1209080115
 ```
 
 ## 声明
