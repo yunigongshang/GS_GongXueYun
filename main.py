@@ -144,7 +144,7 @@ def run(user_login_info):
         else:
             submit_m="本月已提交月报"
     else:
-        submit_d="未设置月报提交"
+        submit_m="未设置月报提交"
         
      #构建推送消息
     if user_login_info.pushKey!="" and user_login_info.type!="":
