@@ -131,7 +131,7 @@ def run(user_login_info):
             
     if user_login_info.is_submit_month_report:        
         Recent_month=submit_month_Inquire(user_login_info)
-        if Recent_month!=datetime.now().month:
+        if int(Recent_month)!=datetime.now().month:
             date = time.localtime()
             day = date.tm_mday
         
