@@ -74,7 +74,7 @@ pip install -r requirements.txt
 ```angular2html
 "phone": "手机号",   \\ 手机号
 "password": "密码", \\ 密码
-"address": "山东省菏泽市曹县某某街道",
+"address": "山东省菏泽市曹县某某街道",\\打卡地址
 "latitude": "34.830624",   \\ 纬度 
 "longitude": "115.545005", \\ 经度
 "province": "山东省",
@@ -85,10 +85,13 @@ pip install -r requirements.txt
 "submit_weekly_time": 1 ,\\ 星期几提交周报
 "submit_month_report_time": 15 \\ 每个月的几号提交月报,不要写28,29,30或31！！！
 "type":"server", \\目前只有server酱推送和pushplus推送，[server,pushplus]
-"pushKey":"" \\推送token，
+"pushKey":"" \\推送token
 ```
 
+打卡地址填什么工学云上面就会显示什么，如果需要更工学云一样加上 · 符号（前后都有一个空格）
+
 Server酱：https://sct.ftqq.com/sendkey
+
 pushplus：微信搜索pushplus回复token
 
 经纬度查询 https://api.map.baidu.com/lbsapi/getpoint/index.html

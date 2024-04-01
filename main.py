@@ -169,6 +169,8 @@ def main(self,name):
                 main_module_log.info(e)
                 if user_login_info.pushKey!="" and user_login_info.type!="":
                     pushMessage(user_login_info.type,"打卡失败！",f"工学云打卡失败！\n\n{e}",user_login_info.pushKey)
+        else:
+            main_module_log.info("打卡文件未配置")
     main_module_log.info("运行结束")
     
 if __name__ == '__main__':
