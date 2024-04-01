@@ -115,7 +115,7 @@ def run(user_login_info):
             weeks_date = load_weeks_info(weeks_dict)
             now_week = weeks_date.get_now_week_date()
             weekly = load_weekly_file()
-            weeks = submit_all['weekReportNum']
+            weeks = int(submit_all['weekReportNum'])+1
             now_week['weeks'] = weeks
             weekly_text=weekly.get_now_weekly(weeks)
             wekkly_tpye=submit_weekly(user_login_info, week=now_week, weekly=weekly_text)
