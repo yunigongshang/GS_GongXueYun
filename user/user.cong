@@ -2,15 +2,16 @@
     "phone": "手机号", 
     "password": "密码",
     "address": "山东省菏泽市曹县某某街道",
-    "latitude": "纬度", //24.699011
-    "longitude": "经度",//118.125557
+    "latitude": "纬度", \\24.699011
+    "longitude": "经度",\\/118.125557
     "province": "山东省",
     "city": "菏泽市",
     "is_submit_daily": false, \\ 默认不提交日报
     "is_submit_weekly": false,\\ 默认不提交周报
     "is_submit_month_report": false,\\ 默认不提交月报
-    "submit_weekly_time": 1 ,\\ 星期几提交周报
-    "submit_month_report_time": 15， \\ 每个月的几号提交月报,不要写28,29,30或31！！！
+    "submit_weekly_time": 1,\\ 星期几提交周报
+    "submit_month_report_time": 15, \\ 每个月的几号提交月报,不要写28,29,30或31！！！
     "type":"server", \\目前只有server酱推送和pushplus推送，[server,pushplus]
     "pushKey":"" \\推送token
+    \\双斜杠后面是注释要删掉
 }
