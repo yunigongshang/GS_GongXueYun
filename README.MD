@@ -88,9 +88,11 @@ pip install -r requirements.txt
 "pushKey":"" \\推送token
 ```
 
-打卡地址填什么工学云上面就会显示什么，如果需要更工学云一样加上 · 符号（前后都有一个空格）
+打卡地址填什么工学云上面就会显示什么，如果需要跟工学云一样加上 · 符号（前后都有一个空格）
 
-Server酱：https://sct.ftqq.com/sendkey
+###推送key获取方式
+
+Server酱：打开https://sct.ftqq.com/r/3464 点击Key&API即可复制
 
 pushplus：微信搜索pushplus回复token
 
