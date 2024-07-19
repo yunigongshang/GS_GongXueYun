@@ -90,7 +90,7 @@ pip install -r requirements.txt
 
 打卡地址填什么工学云上面就会显示什么，如果需要跟工学云一样加上 · 符号（前后都有一个空格）
 
-###推送key获取方式
+### 推送key获取方式
 
 Server酱：打开https://sct.ftqq.com/r/3464 点击Key&API即可复制
 
