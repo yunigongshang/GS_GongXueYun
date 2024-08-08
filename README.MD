@@ -31,7 +31,7 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 >
 >取消了原项目的打卡时间，运行了就打卡
 
-## 云函数部署自动打卡
+## 云函数部署自动打卡！自动打卡！自动打卡！
 
 华为云函数部署，工学云ip在某腾和某里被封，建议使用华为云函数部署
 
@@ -96,7 +96,7 @@ Server酱：打开https://sct.ftqq.com/r/3464 点击Key&API即可复制
 
 pushplus：微信搜索pushplus回复token
 
-经纬度查询 https://api.map.baidu.com/lbsapi/getpoint/index.html
+经纬度查询 hhttps://jingweidu.bmcx.com/
 
 >4.运行main.py
 ```
