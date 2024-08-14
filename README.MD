@@ -96,7 +96,7 @@ Server酱：打开https://sct.ftqq.com/r/3464 点击Key&API即可复制
 
 pushplus：微信搜索pushplus回复token
 
-经纬度查询 hhttps://jingweidu.bmcx.com/
+经纬度查询 https://jingweidu.bmcx.com/
 
 >4.运行main.py
 ```
