@@ -41,10 +41,6 @@ https://github.com/XuanRanDev/Auto-GongXueYun-2
 
 云函数使用教程https://note.youdao.com/s/UHDGuOwj
 
-### 不想自己部署可以+V 
-```
-changzai1209080115
-```
 
 ## 声明
 
